@@ -1,0 +1,46 @@
+.tree-node-content {
+  display: flex;
+  align-items: center;
+  padding: 4px 8px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.tree-node-content:hover {
+  background-color: #f0f0f0;
+}
+
+.tree-node-content.directory {
+  font-weight: 500;
+}
+
+.tree-node-content.file {
+  color: #666;
+}
+
+.expand-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 4px;
+  font-size: 12px;
+  color: #888;
+}
+
+.node-icon {
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.node-name {
+  flex: 1;
+  font-size: 14px;
+}
+
+.tree-node-children {
+  margin-left: 0;
+}
