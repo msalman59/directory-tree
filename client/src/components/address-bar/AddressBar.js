@@ -1,4 +1,5 @@
 import React from "react";
+import { ICONS } from "../../helpers/icons";
 import "./AddressBar.css";
 
 const AddressBar = ({ currentPath, onNavigate }) => {
@@ -14,9 +15,20 @@ const AddressBar = ({ currentPath, onNavigate }) => {
     }
   };
 
+  const handleHomeClick = () => {
+    onNavigate("/");
+  };
+
   return (
     <div className="address-bar">
       <div className="address-bar-content">
+        <button
+          className="home-button"
+          onClick={handleHomeClick}
+          title="Go to root directory"
+        >
+          {ICONS.ROOT}
+        </button>
         <input
           key={currentPath}
           type="text"
