@@ -1,6 +1,16 @@
 import { directoryTree, rootPath } from "../data/directoryTree.js";
 import { findNodeByPath } from "../helpers/directoryTreeHelper.js";
 
+// Sort function: directories first, then files, both alphabetically
+const sortItems = (items) => {
+  return items.sort((a, b) => {
+    if (a.type !== b.type) {
+      return a.type === "directory" ? -1 : 1;
+    }
+    return a.name.localeCompare(b.name);
+  });
+};
+
 const getDirectoryContents = (req, res) => {
   try {
     const requestedPath = req.query.path || rootPath;
@@ -15,10 +25,12 @@ const getDirectoryContents = (req, res) => {
         hasChildren: item.children && item.children.length > 0,
       }));
 
+      const sortedRootItems = sortItems(rootItems);
+
       return res.json({
         success: true,
         path: rootPath,
-        data: rootItems,
+        data: sortedRootItems,
       });
     }
 
@@ -48,10 +60,12 @@ const getDirectoryContents = (req, res) => {
       hasChildren: child.children && child.children.length > 0,
     }));
 
+    const sortedChildItems = sortItems(childItems);
+
     res.json({
       success: true,
       path: requestedPath,
-      data: childItems,
+      data: sortedChildItems,
     });
   } catch (error) {
     console.error("Error reading directory:", error);
